@@ -5,15 +5,11 @@ Item
     id: root
     anchors.fill: parent
 
-    Rectangle
-    {
-        anchors.fill: parent
-        color: "cyan"
 
-        Text
-        {
-            text: "Survey Screen"
-            anchors.centerIn: parent
-        }
+    Text
+    {
+        text: "Survey Screen"
+        anchors.centerIn: parent
     }
+
 }

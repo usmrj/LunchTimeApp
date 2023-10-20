@@ -16,7 +16,7 @@ Item
         height: root.height
         width: height
         radius: height / 2
-        color: "#C8FFFF"
+        color: "#444444"
         anchors
         {
             bottom: parent.bottom
@@ -31,11 +31,7 @@ Item
         height: (root.parent.height * 164) / 2400
         anchors.bottom: parent.bottom
 
-        gradient: Gradient
-        {
-            GradientStop{ position: 0.0; color: "#C8FFFF" }
-            GradientStop{ position: 1.0; color: "#D9D9D9" }
-        }
+        color: "#444444"
     }
 
     Rectangle

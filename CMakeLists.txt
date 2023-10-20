@@ -16,13 +16,19 @@ qt_add_qml_module(appHackHeroesProject
     URI HackHeroesProject
     VERSION 1.0
     QML_FILES
+
     Main.qml
+
     Source/Qml/Screens/MainScreen/MainScreen.qml
-    Source/Qml/Screens/MainScreen/NavBar.qml
     Source/Qml/Screens/FoodMenuScreen/FoodMenuScreen.qml
     Source/Qml/Screens/ProfileScreen/ProfileScreen.qml
     Source/Qml/Screens/QRscreen/ScanScreen.qml
     Source/Qml/Screens/SurveyScreen/SurveyScreen.qml
+    Source/Qml/Screens/MainScreen/ScreenBackground.qml
+
+    Source/Qml/StaticComponents/TopBar.qml
+    Source/Qml/StaticComponents/StaticScreenContent.qml
+    Source/Qml/StaticComponents/NavBar.qml
 
     RESOURCES
     Assets/Icons/Home.png
@@ -30,6 +36,11 @@ qt_add_qml_module(appHackHeroesProject
     Assets/Icons/Profile.png
     Assets/Icons/Survey.png
     Assets/Icons/FoodMenu.png
+
+#    Assets/Fonts/Roboto-Light.ttf
+    Assets/Fonts/Roboto-Thin.ttf
+
+    Assets/Shaders/Radial_Gradient.frag
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

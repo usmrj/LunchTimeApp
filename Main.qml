@@ -7,6 +7,7 @@ import "Source/Qml/Screens/FoodMenuScreen"
 import "Source/Qml/Screens/ProfileScreen"
 import "Source/Qml/Screens/QRscreen"
 import "Source/Qml/Screens/SurveyScreen"
+import "Source/Qml/StaticComponents"
 
 Window
 {
@@ -21,6 +22,11 @@ Window
     id: window
 
 
+
+    ScreenBackground
+    {
+        id: screenBackground
+    }
 
 
 
@@ -57,77 +63,20 @@ Window
                 id: profileScreen
             }
         }
-    }
 
-
-    ScanScreen
-    {
-        id: scanScreen
-        y: window.height
-
-        PropertyAnimation
+        onCurrentIndexChanged:
         {
-            target: scanScreen
-            id: scanSwipeAnimation
-            property: "y"
-            from: scanScreen.y
-            to: scanScreen.y === window.height ? window.height - scanScreen.height : window.height
-            duration: 300
-            easing.type: Easing.InOutQuad
+            staticScreenContent.changeContentText(currentIndex)
         }
     }
 
-    NavBar
+
+    StaticScreenContent
     {
-        anchors.bottom: parent.bottom
-
-        onNavButtonClicked: function(buttonClicked)
-        {
-            switch(buttonClicked)
-            {
-            case "Home":
-                if(swipeView.currentIndex === 1)
-                    swipeView.currentIndex--
-                else
-                    swipeView.currentIndex = 0
-                break;
-
-
-            case "FoodMenu":
-                if(swipeView.currentIndex === 0)
-                    swipeView.currentIndex++
-                else if(swipeView.currentIndex === 2)
-                    swipeView.currentIndex--
-                else
-                    swipeView.currentIndex = 1
-                break;
-
-            case "Survey":
-                if(swipeView.currentIndex === 1)
-                    swipeView.currentIndex++
-                else if(swipeView.currentIndex === 3)
-                    swipeView.currentIndex--
-                else
-                    swipeView.currentIndex = 2
-                break;
-
-
-            case "Profile":
-                if(swipeView.currentIndex === 2)
-                    swipeView.currentIndex++
-                else
-                    swipeView.currentIndex = 3
-                break;
-
-
-            case "Scan":
-                scanSwipeAnimation.start()
-                break;
-
-
-            default:
-                break;
-            }
-        }
+        id: staticScreenContent
+        swipeView: swipeView
     }
+
+
+
 }
