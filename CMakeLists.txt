@@ -5,6 +5,7 @@ project(HackHeroesProject VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Sql)
 
 qt_standard_project_setup()
 
@@ -41,6 +42,7 @@ qt_add_qml_module(appHackHeroesProject
     Assets/Fonts/Roboto-Thin.ttf
 
     Assets/Shaders/Radial_Gradient.frag
+    SOURCES Database.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -56,6 +58,8 @@ set_target_properties(appHackHeroesProject PROPERTIES
 
 target_link_libraries(appHackHeroesProject
     PRIVATE Qt6::Quick
+    PRIVATE Qt6::Sql
+
 )
 
 include(GNUInstallDirs)
