@@ -30,12 +30,7 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/StaticComponents/StaticScreenContent.qml
     Source/Qml/StaticComponents/NavBar.qml
 
-    RESOURCES
-    Assets/Icons/Home.svg
-    Assets/Icons/Scan.svg
-    Assets/Icons/Profile.svg
-    Assets/Icons/Survey.svg
-    Assets/Icons/FoodMenu.svg
+
 
 #    Assets/Fonts/Roboto-Light.ttf
     Assets/Fonts/Roboto-Thin.ttf
