@@ -5,11 +5,14 @@ project(HackHeroesProject VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Sql)
 
 qt_standard_project_setup()
 
 qt_add_executable(appHackHeroesProject
     main.cpp
+
+    Source/Cpp/DataBaseConnection/DatabaseConnection.h Source/Cpp/DataBaseConnection/DatabaseConnection.cpp
 )
 
 qt_add_qml_module(appHackHeroesProject
@@ -51,7 +54,7 @@ set_target_properties(appHackHeroesProject PROPERTIES
 
 target_link_libraries(appHackHeroesProject
     PRIVATE Qt6::Quick
-
+    PRIVATE Qt6::Sql
 )
 
 include(GNUInstallDirs)
