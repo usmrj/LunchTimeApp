@@ -30,12 +30,7 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/StaticComponents/StaticScreenContent.qml
     Source/Qml/StaticComponents/NavBar.qml
 
-    RESOURCES
-    Assets/Icons/Home.png
-    Assets/Icons/Scan.png
-    Assets/Icons/Profile.png
-    Assets/Icons/Survey.png
-    Assets/Icons/FoodMenu.png
+
 
 #    Assets/Fonts/Roboto-Light.ttf
     Assets/Fonts/Roboto-Thin.ttf
@@ -56,6 +51,7 @@ set_target_properties(appHackHeroesProject PROPERTIES
 
 target_link_libraries(appHackHeroesProject
     PRIVATE Qt6::Quick
+
 )
 
 include(GNUInstallDirs)
