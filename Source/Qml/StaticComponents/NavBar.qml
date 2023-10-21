@@ -45,7 +45,7 @@ Item
 
         Image
         {
-            source: "qrc:/HackHeroesProject/Assets/Icons/Scan.png"
+            source: "qrc:/HackHeroesProject/Assets/Icons/Scan.svg"
             anchors.centerIn: parent
             height: (root.width * (sourceSize.height)) / (1080)
             width: (root.width * (sourceSize.width)) / (1080)
@@ -73,7 +73,7 @@ Item
 
         Image
         {
-            source: "qrc:/HackHeroesProject/Assets/Icons/Home.png"
+            source: "qrc:/HackHeroesProject/Assets/Icons/Home.svg"
             height: sourceSize.height / 4 * (Math.min(root.parent.height, root.parent.width / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.height / 4)
             width: sourceSize.width / 4 * (Math.min(root.parent.width, root.parent.height / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.width / 4)
 
@@ -89,7 +89,7 @@ Item
 
         Image
         {
-            source: "qrc:/HackHeroesProject/Assets/Icons/FoodMenu.png"
+            source: "qrc:/HackHeroesProject/Assets/Icons/FoodMenu.svg"
             height: sourceSize.height / 4 * (Math.min(root.parent.height, root.parent.width / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.height / 4)
             width: sourceSize.width / 4 * (Math.min(root.parent.width, root.parent.height / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.width / 4)
 
@@ -117,7 +117,7 @@ Item
 
         Image
         {
-            source: "qrc:/HackHeroesProject/Assets/Icons/Survey.png"
+            source: "qrc:/HackHeroesProject/Assets/Icons/Survey.svg"
             height: sourceSize.height / 4 * (Math.min(root.parent.height, root.parent.width / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.height / 4)
             width: sourceSize.width / 4 * (Math.min(root.parent.width, root.parent.height / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.width / 4)
 
@@ -133,7 +133,7 @@ Item
 
         Image
         {
-            source: "qrc:/HackHeroesProject/Assets/Icons/Profile.png"
+            source: "qrc:/HackHeroesProject/Assets/Icons/Profile.svg"
             height: sourceSize.height / 4 * (Math.min(root.parent.height, root.parent.width / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.height / 4)
             width: sourceSize.width / 4 * (Math.min(root.parent.width, root.parent.height / ((sourceSize.width / 4) / (sourceSize.height / 4))) / sourceSize.width / 4)
 
