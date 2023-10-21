@@ -32,7 +32,7 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/StaticComponents/TopBar.qml
     Source/Qml/StaticComponents/StaticScreenContent.qml
     Source/Qml/StaticComponents/NavBar.qml
-
+    Source/Qml/Screens/FoodMenuScreen/DayTile.qml
 
 
 #    Assets/Fonts/Roboto-Light.ttf
