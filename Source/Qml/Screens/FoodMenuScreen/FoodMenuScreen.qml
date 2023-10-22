@@ -10,24 +10,23 @@ Item
     {
         id: mondayTile
         innerText: "Poniedziałek"
+
+        mainDish: "Zupa grzybowa"
+
         anchors
         {
             left: parent.left
-            leftMargin: 100 / 4
+            leftMargin: 80 / 4
             top: parent.top
-            topMargin: 300 / 4
+            topMargin: 340 / 4
         }
-    }
 
-    DayTile
-    {
-        id: tuesdayTile
-        innerText: "Wtorek"
-        anchors
+        onTilePressed: function()
         {
-            top: mondayTile.bottom
-            topMargin: 120 / 4
-            left: mondayTile.left
+            tuesdayTile.stopAnimation()
+            wednesdayTile.stopAnimation()
+            thursdayTile.stopAnimation()
+            fridayTile.stopAnimation()
         }
     }
 
@@ -37,32 +36,79 @@ Item
         innerText: "Środa"
         anchors
         {
-            top: tuesdayTile.bottom
-            topMargin: 120 / 4
-            left: tuesdayTile.left
+            top: mondayTile.bottom
+            topMargin: 80 / 4
+            left: mondayTile.left
         }
-    }
 
-    DayTile
-    {
-        id: thursdayTile
-        innerText: "Środa"
-        anchors
+        onTilePressed: function()
         {
-            top: parent.top
-            topMargin: 546 / 4
+            mondayTile.stopAnimation()
+            tuesdayTile.stopAnimation()
+            thursdayTile.stopAnimation()
+            fridayTile.stopAnimation()
         }
     }
 
     DayTile
     {
         id: fridayTile
-        innerText: "Środa"
+        innerText: "Piątek"
         anchors
         {
-            top: fridayTile.bottom
-            topMargin: 120 / 4
+            top: wednesdayTile.bottom
+            topMargin: 80 / 4
+            left: wednesdayTile.left
+        }
+
+        onTilePressed: function()
+        {
+            mondayTile.stopAnimation()
+            tuesdayTile.stopAnimation()
+            wednesdayTile.stopAnimation()
+            thursdayTile.stopAnimation()
         }
     }
 
+    DayTile
+    {
+        id: tuesdayTile
+        innerText: "Wtorek"
+        anchors
+        {
+            bottom: thursdayTile.top
+            bottomMargin: 80 / 4
+            left: wednesdayTile.right
+            leftMargin: 100 / 4
+        }
+
+        onTilePressed: function()
+        {
+            mondayTile.stopAnimation()
+            wednesdayTile.stopAnimation()
+            thursdayTile.stopAnimation()
+            fridayTile.stopAnimation()
+        }
+    }
+
+    DayTile
+    {
+        id: thursdayTile
+        innerText: "Czwartek"
+        anchors
+        {
+            bottom: parent.bottom
+            bottomMargin: 1000 / 4
+            left: wednesdayTile.right
+            leftMargin: 100 / 4
+        }
+
+        onTilePressed: function()
+        {
+            mondayTile.stopAnimation()
+            tuesdayTile.stopAnimation()
+            wednesdayTile.stopAnimation()
+            fridayTile.stopAnimation()
+        }
+    }
 }

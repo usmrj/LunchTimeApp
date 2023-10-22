@@ -68,6 +68,7 @@ Window
 
         onCurrentIndexChanged:
         {
+            screenBackground.screenMoved(currentIndex)
             staticScreenContent.changeContentText(currentIndex)
         }
     }
@@ -78,7 +79,4 @@ Window
         id: staticScreenContent
         swipeView: swipeView
     }
-
-
-
 }
