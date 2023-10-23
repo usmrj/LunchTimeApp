@@ -29,7 +29,9 @@ Item
         id: colorburn
         anchors
         {
-            horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: parent.height / 7
+            horizontalCenter: parent.horizontalCenter
+            top: parent.top
+            topMargin: parent.height / 7
         }
         width: parent.width /1.2
         height: parent.width /1.2
