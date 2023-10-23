@@ -6,25 +6,30 @@ Item
     width: parent.width
     height: parent.height / 1.65
 
-    Rectangle{
+    Rectangle
+    {
         anchors.fill: parent
         color: "#F2FF8A00"
         radius: 15
     }
-    Rectangle{
+    Rectangle
+    {
         anchors.fill: parent
-        gradient: Gradient {
-            GradientStop {position: 0.0; color: "#FAFF00"}
-            GradientStop {position: 0.7; color: "transparent"}
-            GradientStop {position: 1; color: "#C57000"}
+        gradient: Gradient
+        {
+            GradientStop { position: 0.0; color: "#FAFF00" }
+            GradientStop { position: 0.7; color: "transparent" }
+            GradientStop { position: 1; color: "#C57000" }
         }
         radius: 15
         opacity: 0.5
     }
-    Rectangle{
+    Rectangle
+    {
         id: colorburn
-        anchors {
-        horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: parent.height / 7
+        anchors
+        {
+            horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: parent.height / 7
         }
         width: parent.width /1.2
         height: parent.width /1.2
@@ -34,9 +39,11 @@ Item
 
 
     }
-    Rectangle{
+    Rectangle
+    {
         anchors.centerIn: colorburn
-        Text{
+        Text
+        {
             anchors.centerIn: parent
             text: "QR CODE HERE"
         }
