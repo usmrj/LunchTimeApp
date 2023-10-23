@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls
+import QtQuick.Effects
 
 Item
 {
@@ -139,6 +140,16 @@ Item
                 pixelSize: 70 / 4
                 family: robotoLight.font
             }
+        }
+
+        layer.enabled: true
+        layer.effect: MultiEffect
+        {
+            shadowColor: "black"
+            shadowVerticalOffset: 13
+            shadowOpacity: 0.3
+            shadowEnabled: true
+            blurMultiplier: 1
         }
     }
 }

@@ -1,28 +1,74 @@
 import QtQuick 2.15
+import QtQuick.Effects
 
 Rectangle
 {
     anchors.fill: parent
     color: "#303030"
 
-    function screenMoved(bLeft)
+    function screenMoved(index)
     {
-        if(bLeft)
-        moveAnimation.to = stripe.x + 100
-        else
-        moveAnimation.to = stripe.x - 100
-        moveAnimation.start()
+        switch(index)
+        {
+        case 0:
+            if(stripeMoveAnimation.running)
+                stripeMoveAnimation.stop()
+            stripeMoveAnimation.to = 0
+
+            stripeMoveAnimation.start()
+            //stripe.anchors.horizontalCenterOffset = 0
+            break;
+
+        case 1:
+            if(stripeMoveAnimation.running)
+                stripeMoveAnimation.stop()
+            stripeMoveAnimation.to = 921 / 4
+            stripeMoveAnimation.start()
+            //stripe.anchors.horizontalCenterOffset = 921 / 4
+            break;
+
+        case 2:
+            if(stripeMoveAnimation.running)
+                stripeMoveAnimation.stop()
+            stripeMoveAnimation.to = -750 / 4
+            stripeMoveAnimation.start()
+            //stripe.anchors.horizontalCenterOffset = -750 / 4
+            break;
+
+        case 3:
+            break;
+
+        default:
+            break;
+        }
     }
+
+
 
 
     Item
     {
         id: stripe
         height: 540 / 4
-        width: 2600 / 4
+        width: 2600
         opacity: 0.54
         rotation: -57
-        anchors.centerIn: parent
+        anchors
+        {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+
+        PropertyAnimation
+        {
+            id: stripeMoveAnimation
+            target: stripe
+            property: "anchors.horizontalCenterOffset"
+            from: stripe.anchors.horizontalCenterOffset
+            to: 0
+            duration: 500
+            easing.type: easing.InOutQuad
+        }
 
 
         Rectangle
@@ -53,6 +99,16 @@ Rectangle
             to: 0
             duration: 400
             easing.type: easing.InOutCubic
+        }
+
+        layer.enabled: true
+        layer.effect: MultiEffect
+        {
+            shadowColor: "black"
+            shadowVerticalOffset: 10
+            shadowOpacity: 0.4
+            shadowEnabled: true
+            blurMultiplier: 1
         }
     }
 }

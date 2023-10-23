@@ -8,10 +8,11 @@ Item
 
     function changeContentText(index)
     {
+        navBar.screenChanged(index)
         switch(index)
         {
         case 0:
-            topBar.changeScreenContentText("")
+            topBar.changeScreenContentText("")          
             break;
 
         case 1:
@@ -55,6 +56,7 @@ Item
 
     NavBar
     {
+        id: navBar
         anchors.bottom: parent.bottom
 
         onNavButtonClicked: function(buttonClicked)
