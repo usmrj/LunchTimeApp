@@ -36,6 +36,8 @@ qt_add_qml_module(appHackHeroesProject
 
 
 #    Assets/Fonts/Roboto-Light.ttf
+
+    RESOURCES
     Assets/Fonts/Roboto-Thin.ttf
 
     Assets/Shaders/Radial_Gradient.frag

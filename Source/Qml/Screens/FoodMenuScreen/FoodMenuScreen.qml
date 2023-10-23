@@ -11,7 +11,10 @@ Item
         id: mondayTile
         innerText: "Poniedziałek"
 
-        mainDish: "Zupa grzybowa"
+        mainDish: "Schabowy"
+        secondDish: "Zupa grzybowa"
+        firstIngr: "Ziemniaki"
+        secondIngr: "Kiszona kapusta"
 
         anchors
         {
@@ -34,6 +37,11 @@ Item
     {
         id: wednesdayTile
         innerText: "Środa"
+        mainDish: "Schabowy"
+        secondDish: "Zupa grzybowa"
+        firstIngr: "Ziemniaki"
+        secondIngr: "Kiszona kapusta"
+
         anchors
         {
             top: mondayTile.bottom
@@ -54,6 +62,11 @@ Item
     {
         id: fridayTile
         innerText: "Piątek"
+        mainDish: "Schabowy"
+        secondDish: "Zupa grzybowa"
+        firstIngr: "Ziemniaki"
+        secondIngr: "Kiszona kapusta"
+
         anchors
         {
             top: wednesdayTile.bottom
@@ -74,6 +87,11 @@ Item
     {
         id: tuesdayTile
         innerText: "Wtorek"
+        mainDish: "Schabowy"
+        secondDish: "Zupa grzybowa"
+        firstIngr: "Ziemniaki"
+        secondIngr: "Kiszona kapusta"
+
         anchors
         {
             bottom: thursdayTile.top
@@ -95,6 +113,11 @@ Item
     {
         id: thursdayTile
         innerText: "Czwartek"
+        mainDish: "Kotlet Schabowy"
+        secondDish: "Zupa grzybowa"
+        firstIngr: "Ziemniaki"
+        secondIngr: "Kiszona kapusta"
+
         anchors
         {
             bottom: parent.bottom

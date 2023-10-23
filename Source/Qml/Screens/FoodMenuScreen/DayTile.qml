@@ -16,7 +16,7 @@ Item
 
     property string mainDish: ""
     property string secondDish: ""
-    property string fistIngr: ""
+    property string firstIngr: ""
     property string secondIngr: ""
 
     property string innerText
@@ -30,25 +30,6 @@ Item
                 enlargeAnimation.stop()
             enlargeAnimation.start()
         }
-    }
-
-    //    states:
-    //        State
-    //        {
-    //            name: "reanchored"
-    //            AnchorChanges
-    //            {
-    //                target: dayName
-    //                anchors.verticalCenter: root.top
-    ////                anchors.horizontalCenter: undefined
-    ////                anchors.top: root.top
-    //            }
-    //        }
-
-    transitions: Transition
-    {
-        // smoothly reanchor myRect and move into new position
-        AnchorAnimation { duration: 1000 }
     }
 
     Rectangle
@@ -89,8 +70,12 @@ Item
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
+
             ColumnLayout
             {
+                id: openedContentSecondDish
+                opacity: 0.0
+                spacing: 16 / 4
                 anchors
                 {
                     horizontalCenter: parent.horizontalCenter
@@ -98,7 +83,49 @@ Item
                     topMargin: 50 / 4
                 }
 
+                Label
+                {
+                    text: "piersze danie"
+                    color: "#FFFFFF"
+                    font
+                    {
+                        pixelSize: 29 / 4
+                    }
+
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                Label
+                {
+                    Layout.preferredWidth: 50
+                    height: 100
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    text: secondDish
+                    color: "#FFB800"
+                    font
+                    {
+                        pixelSize: 50 / 4
+                    }
+
+
+                    Layout.alignment: Qt.AlignHCenter
+                }
+            }
+
+
+            ColumnLayout
+            {
+                id: openedContentMainDish
                 spacing: 16 / 4
+                opacity: 0.0
+                anchors
+                {
+                    horizontalCenter: parent.horizontalCenter
+                    bottom: parent.bottom
+                    bottomMargin: 50 / 4
+                }
+
                 Label
                 {
                     text: "główne danie"
@@ -113,6 +140,10 @@ Item
 
                 Label
                 {
+                    Layout.preferredWidth: 50
+                    height: 100
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
                     text: mainDish
                     color: "#FFB800"
                     font
@@ -120,11 +151,42 @@ Item
                         pixelSize: 50 / 4
                     }
 
+
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                Label
+                {
+                    Layout.preferredWidth: 50
+                    height: 100
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    text: firstIngr
+                    color: "#FF9142"
+                    font
+                    {
+                        pixelSize: 29 / 4
+                    }
+
+
+                    Layout.alignment: Qt.AlignHCenter
+                }
+                Label
+                {
+                    Layout.preferredWidth: 50
+                    height: 100
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    text: secondIngr
+                    color: "#FF9142"
+                    font
+                    {
+                        pixelSize: 29 / 4
+                    }
+
                     Layout.alignment: Qt.AlignHCenter
                 }
             }
-
-
         }
 
         MouseArea
@@ -161,6 +223,25 @@ Item
                 to: innerRect.height === innerNormalHeight ? innerToggledHeight + (outerRect.width - innerRect.width) : innerNormalHeight
                 duration: 500
                 easing.type: easing.InOutCubic
+            }
+            PropertyAnimation
+            {
+                id: openedContentAnimation
+                targets: [openedContentSecondDish, openedContentMainDish]
+                property: "opacity"
+                from: openedContentSecondDish.opacity
+                to: outerRectAnimation.to > outerRectAnimation.from ? 1.0 : 0.0
+                duration: 400
+                easing.type: to === 1.0 ? Easing.InQuart : Easing.OutQuart
+            }
+            PropertyAnimation
+            {
+                target: dayName
+                property: "opacity"
+                from: dayName.opacity
+                to: outerRectAnimation.to < outerRectAnimation.from ? 1.0 : 0.0
+                duration: 500
+                easing.type: easing.InOutQuart
             }
         }
     }
