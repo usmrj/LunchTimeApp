@@ -6,85 +6,248 @@ Item {
     anchors.fill: parent
 
     property real iconHeight: 300/4
+    property bool infoBoxOpened: false
 
-    ColumnLayout {
-        width: parent.width * 0.6990740740740741
-        anchors.topMargin: 554 / 4
-        anchors.horizontalCenter: parent.horizontalCenter
-            Rectangle
+    Image
+    {
+        source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="35" fill="#D67300"/><path d="M32.9975 56.08C32.9975 56.8267 32.4642 57.2 31.3975 57.2C29.7175 57.2 28.5708 56.88 27.9575 56.24C27.3442 55.5733 27.0375 54.4667 27.0375 52.92C27.0642 50.52 27.7175 46.68 28.9975 41.4C30.3042 36.12 31.5308 32.2 32.6775 29.64C32.9708 28.9733 33.3842 28.3467 33.9175 27.76C34.4508 27.1467 35.1575 26.84 36.0375 26.84C36.4108 26.84 36.7175 27.0667 36.9575 27.52C37.2242 27.9733 37.3575 28.4933 37.3575 29.08C37.3575 29.6667 37.2508 30.5467 37.0375 31.72C36.8242 32.8667 36.5575 34.1867 36.2375 35.68C35.9175 37.1733 35.5575 38.7867 35.1575 40.52C33.7175 47.1067 32.9975 52.2933 32.9975 56.08Z" fill="black"/><circle cx="38" cy="18" r="4" fill="black"/></svg>`
+        height: iconHeight / 4
+        width: height
+        anchors
+        {
+            right: parent.right
+            top: parent.top
+            topMargin: iconHeight / 1.5
+            rightMargin: 5
+        }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            onClicked:
             {
-                id: good
-                height: iconHeight
-                width: height
-                radius: height / 2
-                color: "green"
-                Layout.alignment: Qt.AlignRight
+                infoBoxOpened = !infoBoxOpened
             }
+        }
+    }
 
+    ColumnLayout
+    {
+        width: parent.width * 0.6574074074074074
+        anchors
+        {
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+            topMargin: 554 / 4
+        }
 
-            Rectangle
+        Image
+        {
+            id: top
+            source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M91.4678 195.191L100.427 200.639C131.068 219.271 169.54 219.271 200.181 200.639L209.14 195.191" stroke="#14FF00" stroke-width="10" stroke-linecap="round"/><circle cx="150.308" cy="150.795" r="145" stroke="#14FF00" stroke-width="10"/><circle cx="102.277" cy="124.651" r="16.4147" fill="#14FF00"/><circle cx="199.771" cy="124.651" r="16.4147" fill="#14FF00"/></svg>`
+            height: iconHeight
+            width: height
+            Layout.alignment: Qt.AlignRight
+
+            MouseArea
             {
-                id: middle
-                height: iconHeight
-                width: height
-                radius: height / 2
-                color: "yellow"
-                Layout.alignment: Qt.AlignHCenter
+                anchors.fill: parent
+                onClicked:
+                {
+                    //iconClicked()
+                }
             }
+        }
 
 
-            Rectangle
+        Image
+        {
+            id: middle
+            source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M91.7974 199.552H205.482" stroke="#FAFF08" stroke-width="10" stroke-linecap="round"/><circle cx="150.218" cy="150.605" r="145" stroke="#FAFF08" stroke-width="10"/><circle cx="101.193" cy="116.503" r="16.4147" fill="#FAFF00"/><circle cx="200.667" cy="116.503" r="16.4147" fill="#FAFF00"/></svg>`
+            height: iconHeight
+            width: height
+            Layout.alignment: Qt.AlignHCenter
+
+            MouseArea
             {
-                id: bad
-                height: iconHeight
-                width: height
-                radius: height / 2
-                color: "red"
-                Layout.alignment: Qt.AlignLeft
+                anchors.fill: parent
+                onClicked:
+                {
+                    //iconClicked()
+                }
             }
+        }
+
+
+        Image
+        {
+            id: bad
+            source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M208.801 201.191L199.842 195.743C169.201 177.111 130.73 177.111 100.088 195.743L91.1288 201.191" stroke="#FF0000" stroke-width="10" stroke-linecap="round"/><circle cx="150.129" cy="150.415" r="145" stroke="#FF0000" stroke-width="10"/><circle cx="101.104" cy="117.746" r="16.4147" fill="#FF0000"/><circle cx="199.38" cy="117.746" r="16.4147" fill="#FF0000"/></svg>`
+            height: iconHeight
+            width: height
+            Layout.alignment: Qt.AlignLeft
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked:
+                {
+                    //iconClicked()
+                }
+            }
+        }
 
     }
 
-//    Rectangle
-//    {
-//        id: good
-//        height: iconHeight
-//        width: height
-//        radius: height / 2
-//        color: "green"
-//        anchors.centerIn: parent
-//    }
+    Text
+    {
+        text:  "Oceń dzisiejszy obiad"
+        color: "#FFB800"
+        font.pixelSize: 65 / 4
+        width: parent.width - 230 / 4
+        horizontalAlignment: Text.AlignHCenter
+        anchors
+        {
+            horizontalCenter: dailyFoodbox.horizontalCenter
+            bottom: dailyFoodbox.top
+            bottomMargin: 93 / 4
+        }
+    }
 
-//    Rectangle
-//    {
-//        id: mid
-//        height: iconHeight
-//        width: height
-//        radius: height / 2
-//        color: "yellow"
+    Rectangle
+    {
+        id: dailyFoodbox
+        width: parent.width - 224 / 4
+        height: 300 / 4
+        color: "#303030"
+        radius: 51 / 4
 
-//        anchors
-//        {
-//            top: good.bottom
-//            topMargin: -width / 2
-//            right:good.left
-//            rightMargin: -width / 2
-//        }
-//    }
+        border.color: "#FFB800"
+        border.width: 4 / 4
+        anchors
+        {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: 310 / 4
+        }
 
-//    Rectangle
-//    {
-//        id: bad
-//        height: iconHeight
-//        width: height
-//        radius: height / 2
-//        color: "red"
+        Rectangle
+        {
+            id: innerRect
+            height: parent.height - 24 / 2
+            width: parent.width - 24 / 2
+            color: "transparent"
+            radius: 31 / 4
 
-//        anchors
-//        {
-//            top: mid.bottom
-//            right:mid.left
-//            rightMargin: -width / 2
-//        }
-//    }
+            anchors.centerIn: parent
+
+            border.color: "#FF7A00"
+            border.width: 9 / 4
+
+            ColumnLayout
+            {
+                anchors
+                {
+                    top: parent.top
+                    left: parent.left
+                    topMargin: 7
+                    leftMargin: 7
+                }
+                spacing: 2
+
+                Text
+                {
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    text: "pierwsze danie"
+                    color: "white"
+                    font.pixelSize: 29 / 4
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                Text
+                {
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    text: "Zupa Kospińska"
+                    color: "#FFB800"
+                    font.pixelSize: 50 / 4
+                    Layout.alignment: Qt.AlignHCenter
+                }
+            }
+
+            ColumnLayout
+            {
+                id: mainDish
+                anchors
+                {
+                    top: parent.top
+                    right: parent.right
+                    topMargin: 7
+                    rightMargin: 7
+                }
+                spacing: 2
+
+                Text
+                {
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    text: "drugie danie"
+                    color: "white"
+                    font.pixelSize: 29 / 4
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                Text
+                {
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    text: "Kotlet Kołodziejski"
+                    color: "#FFB800"
+                    font.pixelSize: 50 / 4
+                    Layout.alignment: Qt.AlignHCenter
+                }
+            }
+
+            ColumnLayout
+            {
+                spacing: -1
+                anchors
+                {
+                    top: mainDish.top
+                    horizontalCenter: mainDish.horizontalCenter
+                    topMargin: 30
+                }
+
+                Text
+                {
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    text: "ziemniaki"
+                    color: "#FFB800"
+                    opacity: 0.76
+                    font.pixelSize: 29 / 4
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                Text
+                {
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    text: "kapusta"
+                    color: "#FFB800"
+                    opacity: 0.76
+                    font.pixelSize: 29 / 4
+                    Layout.alignment: Qt.AlignHCenter
+                }
+            }
+        }
+    }
+
+    Loader
+    {
+        source: "SurveyInfo.qml"
+        active: infoBoxOpened
+        anchors.fill: parent
+    }
 }
