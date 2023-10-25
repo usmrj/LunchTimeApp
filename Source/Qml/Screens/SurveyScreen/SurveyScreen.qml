@@ -7,6 +7,7 @@ Item {
 
     property real iconHeight: 300/4
     property bool infoBoxOpened: false
+    property Image optionSelected
 
     Image
     {
@@ -31,6 +32,30 @@ Item {
         }
     }
 
+    OptionHighlight
+    {
+        parent: good
+        imageSource: good.source
+        selected: optionSelected === good
+        z: -1
+    }
+
+    OptionHighlight
+    {
+        parent: middle
+        imageSource: middle.source
+        selected: optionSelected === middle
+        z: -1
+    }
+
+    OptionHighlight
+    {
+        parent: bad
+        imageSource: bad.source
+        selected: optionSelected === bad
+        z: -1
+    }
+
     ColumnLayout
     {
         width: parent.width * 0.6574074074074074
@@ -43,7 +68,7 @@ Item {
 
         Image
         {
-            id: top
+            id: good
             source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M91.4678 195.191L100.427 200.639C131.068 219.271 169.54 219.271 200.181 200.639L209.14 195.191" stroke="#14FF00" stroke-width="10" stroke-linecap="round"/><circle cx="150.308" cy="150.795" r="145" stroke="#14FF00" stroke-width="10"/><circle cx="102.277" cy="124.651" r="16.4147" fill="#14FF00"/><circle cx="199.771" cy="124.651" r="16.4147" fill="#14FF00"/></svg>`
             height: iconHeight
             width: height
@@ -54,14 +79,13 @@ Item {
                 anchors.fill: parent
                 onClicked:
                 {
-                    //iconClicked()
+                    optionSelected = good
                 }
             }
         }
 
-
         Image
-        {
+        {     
             id: middle
             source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M91.7974 199.552H205.482" stroke="#FAFF08" stroke-width="10" stroke-linecap="round"/><circle cx="150.218" cy="150.605" r="145" stroke="#FAFF08" stroke-width="10"/><circle cx="101.193" cy="116.503" r="16.4147" fill="#FAFF00"/><circle cx="200.667" cy="116.503" r="16.4147" fill="#FAFF00"/></svg>`
             height: iconHeight
@@ -73,7 +97,7 @@ Item {
                 anchors.fill: parent
                 onClicked:
                 {
-                    //iconClicked()
+                    optionSelected = middle
                 }
             }
         }
@@ -92,7 +116,7 @@ Item {
                 anchors.fill: parent
                 onClicked:
                 {
-                    //iconClicked()
+                    optionSelected = bad
                 }
             }
         }
@@ -216,7 +240,7 @@ Item {
                 {
                     top: mainDish.top
                     horizontalCenter: mainDish.horizontalCenter
-                    topMargin: 30
+                    topMargin: 28
                 }
 
                 Text
