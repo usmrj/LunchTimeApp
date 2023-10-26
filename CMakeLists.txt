@@ -4,8 +4,11 @@ project(HackHeroesProject VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
-find_package(Qt6 REQUIRED COMPONENTS Sql)
+find_package(Qt6 6.4 REQUIRED COMPONENTS
+    Quick
+    ShaderTools
+    Sql
+)
 
 qt_standard_project_setup()
 
@@ -34,15 +37,20 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/StaticComponents/NavBar.qml
     Source/Qml/Screens/FoodMenuScreen/DayTile.qml
     Source/Qml/Screens/SurveyScreen/SurveyInfo.qml
+    Source/Qml/Screens/SurveyScreen/OptionHighlight.qml
 
 
 #    Assets/Fonts/Roboto-Light.ttf
 
     RESOURCES
     Assets/Fonts/Roboto-Thin.ttf
+)
 
-    Assets/Shaders/Radial_Gradient.frag
-    QML_FILES Source/Qml/Screens/SurveyScreen/OptionHighlight.qml
+qt6_add_shaders(appHackHeroesProject
+    "LunchLink_Shaders"
+
+    FILES
+    Assets/Shaders/radial_gradient.frag
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
