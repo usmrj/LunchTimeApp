@@ -8,11 +8,20 @@ layout(std140, binding = 0) uniform buf {
     vec2 radius;
     vec4 zeroColor;
     vec4 oneColor;
+    float opacityRadius;
 };
 
 void main() {
     vec2 d = qt_TexCoord0 - origin;
     vec2 n = d / radius;
     float l = sqrt(n.x * n.x + n.y * n.y);
-    fragColor = mix(zeroColor, oneColor, min(1, l));
+
+    if (l <= opacityRadius)
+    {
+        fragColor = mix(zeroColor, oneColor, min(1, l));
+    }
+    else
+    {
+        fragColor = vec4(0, 0, 0, 0);
+    }
 }

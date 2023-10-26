@@ -59,15 +59,15 @@ Item
         color: "#444444"
     }
 
-//    layer.enabled: true
-//    layer.effect: MultiEffect
-//    {
-//        shadowColor: "black"
-//        shadowVerticalOffset: -1
-//        shadowOpacity: 1
-//        shadowEnabled: true
-//        blurMultiplier: 1
-//    }
+        //    layer.enabled: true
+        //    layer.effect: MultiEffect
+        //    {
+        //        shadowColor: "black"
+        //        shadowVerticalOffset: -1
+        //        shadowOpacity: 1
+        //        shadowEnabled: true
+        //        blurMultiplier: 1
+        //    }
 
     Rectangle
     {
@@ -76,11 +76,22 @@ Item
         radius: width / 2
         anchors.centerIn: barRoundness
 
-        color: "green"
+        color: "#FAFF00"
+
+        ShaderEffect
+        {
+            property point origin: Qt.point(0.5, 0.5)
+            property point radius: Qt.point(1.0, 1.0)
+            property color zeroColor: "#FF6B00"
+            property color oneColor: "#FAFF00"
+            property real opacityRadius: 0.495
+
+            anchors.fill: parent
+            fragmentShader: "qrc:/Assets/Shaders/radial_gradient.frag.qsb"
+        }
 
         Image
         {
-
             source: `data:image/svg+xml, <svg width='79' height='79' viewBox='0 0 79 79' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M23.9492 75.3316H10.3397C7.02598 75.3316 4.33969 72.6453 4.33969 69.3316V55.0459' stroke='black' stroke-width='7' stroke-miterlimit='4.0688' stroke-linecap='round'/><path d='M4.00237 23.9414V10.3319C4.00237 7.01817 6.68866 4.33188 10.0024 4.33188H24.2881' stroke='black' stroke-width='7' stroke-miterlimit='4.0688' stroke-linecap='round'/><path d='M55.3926 3.99359H69.0021C72.3158 3.99359 75.0021 6.67988 75.0021 9.99358V24.2793' stroke='black' stroke-width='7' stroke-miterlimit='4.0688' stroke-linecap='round'/><path d='M74.6636 55.3838V68.9933C74.6636 72.307 71.9774 74.9933 68.6636 74.9933H54.3779' stroke='black' stroke-width='7' stroke-miterlimit='4.0688' stroke-linecap='round'/><rect x='22.502' y='22.4932' width='35' height='35' rx='10.5' stroke='black' stroke-width='7'/></svg>`
             anchors.centerIn: parent
             height: (root.width * (sourceSize.height)) / (1080)
