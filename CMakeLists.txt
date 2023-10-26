@@ -33,6 +33,7 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/StaticComponents/StaticScreenContent.qml
     Source/Qml/StaticComponents/NavBar.qml
     Source/Qml/Screens/FoodMenuScreen/DayTile.qml
+    Source/Qml/Screens/SurveyScreen/SurveyInfo.qml
 
 
 #    Assets/Fonts/Roboto-Light.ttf
@@ -41,6 +42,7 @@ qt_add_qml_module(appHackHeroesProject
     Assets/Fonts/Roboto-Thin.ttf
 
     Assets/Shaders/Radial_Gradient.frag
+    QML_FILES Source/Qml/Screens/SurveyScreen/OptionHighlight.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
