@@ -9,22 +9,6 @@ Item
     required property string imageSource
     required property bool selected
 
-    onSelectedChanged:
-    {
-        selectAnimation.start()
-    }
-
-    PropertyAnimation
-    {
-        id: selectAnimation
-        targets: [blur, doubleBlur]
-        property: "opacity"
-        from: blur.opacity
-        to: blur.opacity === 0.0 ? 1.0 : 0.0
-        duration: 200
-        easing.type: Easing.InOutQuad
-    }
-
     Image
     {
         id: sourceItem
@@ -35,26 +19,35 @@ Item
     MultiEffect
     {
         id: blur
-        opacity: 0.0
+        opacity: selected ? 1.0 : 0.0
         source: sourceItem
         anchors.fill: sourceItem
 
         blurEnabled: true
         blurMax: 32
         blur: 0.8
-        //blurMultiplier: 2
+
+        Behavior on opacity
+        {
+            NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+        }
     }
 
     MultiEffect
     {
         id: doubleBlur
-        opacity: 0.0
+        opacity: selected ? 1.0 : 0.0
         source: sourceItem
         anchors.fill: sourceItem
 
         blurEnabled: true
         blurMax: 32
         blur: 0.8
-        //blurMultiplier: 2
+
+
+        Behavior on opacity
+        {
+            NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+        }
     }
 }
