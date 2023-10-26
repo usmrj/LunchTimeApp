@@ -27,6 +27,11 @@ Item
         {
             surveyScreen.infoBoxOpened = false
         }
+
+        onContainsMouseChanged:
+        {
+            surveyScreen.infoBoxOpened = false
+        }
     }
 
     Rectangle
@@ -114,7 +119,5 @@ Item
                 }
             }
         }
-
     }
-
 }

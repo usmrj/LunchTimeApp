@@ -86,7 +86,7 @@ Item
         }
 
         Image
-        {     
+        {
             id: middle
             source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M91.7974 199.552H205.482" stroke="#FAFF08" stroke-width="10" stroke-linecap="round"/><circle cx="150.218" cy="150.605" r="145" stroke="#FAFF08" stroke-width="10"/><circle cx="101.193" cy="116.503" r="16.4147" fill="#FAFF00"/><circle cx="200.667" cy="116.503" r="16.4147" fill="#FAFF00"/></svg>`
             height: iconHeight
