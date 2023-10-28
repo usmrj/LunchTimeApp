@@ -1,8 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include "Source/Cpp/DataBaseConnection/DatabaseConnection.h"
-
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QDebug>
