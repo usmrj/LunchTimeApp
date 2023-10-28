@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import HackHeroesProject
+
 Item
 {
     height: normalHeight
@@ -40,7 +42,7 @@ Item
         color: "transparent"
         radius: 51 / 4
 
-        border.color: "#FFB800"
+        border.color:  Style.secondaryColor
         border.width: 4 / 4
 
         Rectangle
@@ -53,14 +55,14 @@ Item
 
             anchors.centerIn: parent
 
-            border.color: "#FF7A00"
+            border.color: Style.accentColor
             border.width: 9 / 4
 
             Label
             {
                 id: dayName
                 text: innerText
-                color: "#FFB800"
+                color: Style.isDarkTheme ? Style.secondaryColor : "#995BFF"
                 font
                 {
                     pixelSize: 50 / 4
@@ -86,7 +88,7 @@ Item
                 Label
                 {
                     text: "piersze danie"
-                    color: "#FFFFFF"
+                    color: Style.isDarkTheme ? "white" : "black"
                     font
                     {
                         pixelSize: 29 / 4
@@ -102,7 +104,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
                     text: secondDish
-                    color: "#FFB800"
+                    color: Style.secondaryColor
                     font
                     {
                         pixelSize: 50 / 4
@@ -129,7 +131,7 @@ Item
                 Label
                 {
                     text: "główne danie"
-                    color: "#FFFFFF"
+                    color: Style.isDarkTheme ? "white" : "black"
                     font
                     {
                         pixelSize: 29 / 4
@@ -145,7 +147,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
                     text: mainDish
-                    color: "#FFB800"
+                    color: Style.secondaryColor
                     font
                     {
                         pixelSize: 50 / 4
@@ -162,7 +164,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
                     text: firstIngr
-                    color: "#FF9142"
+                    color: Style.detailColor
                     font
                     {
                         pixelSize: 29 / 4
@@ -178,7 +180,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
                     text: secondIngr
-                    color: "#FF9142"
+                    color: Style.detailColor
                     font
                     {
                         pixelSize: 29 / 4

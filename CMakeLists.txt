@@ -4,6 +4,11 @@ project(HackHeroesProject VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 find_package(Qt6 6.4 REQUIRED COMPONENTS
     Quick
     ShaderTools
@@ -44,6 +49,10 @@ qt_add_qml_module(appHackHeroesProject
 
     RESOURCES
     Assets/Fonts/Roboto-Thin.ttf
+
+    # Style
+    SOURCES
+    Source/Cpp/Style/Style.h Source/Cpp/Style/Style.cpp
 )
 
 qt6_add_shaders(appHackHeroesProject
@@ -52,6 +61,14 @@ qt6_add_shaders(appHackHeroesProject
     FILES
     Assets/Shaders/radial_gradient.frag
 )
+
+target_include_directories(appHackHeroesProject
+    PUBLIC
+        Source
+    PRIVATE
+        Source/Cpp/Style
+)
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
