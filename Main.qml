@@ -9,6 +9,8 @@ import "Source/Qml/Screens/QRscreen"
 import "Source/Qml/Screens/SurveyScreen"
 import "Source/Qml/StaticComponents"
 
+import HackHeroesProject
+
 Window
 {
     readonly property real screenX: 1080 / 4
@@ -20,9 +22,6 @@ Window
     title: qsTr("Hello World")
 
     id: window
-
-
-
 
 
     ScreenBackground
@@ -79,4 +78,19 @@ Window
         id: staticScreenContent
         swipeView: swipeView
     }
+
+    Rectangle
+    {
+        anchors.fill: parent
+        color: "red"
+
+        Text
+        {
+            anchors.centerIn: parent
+            text: "loading"
+        }
+
+        visible: Data.loading
+    }
+
 }

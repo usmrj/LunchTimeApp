@@ -13,14 +13,13 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS
     Quick
     ShaderTools
     Sql
+    Concurrent
 )
 
 qt_standard_project_setup()
 
 qt_add_executable(appHackHeroesProject
     main.cpp
-
-    Source/Cpp/DataBaseConnection/DatabaseConnection.h Source/Cpp/DataBaseConnection/DatabaseConnection.cpp
 )
 
 qt_add_qml_module(appHackHeroesProject
@@ -53,6 +52,10 @@ qt_add_qml_module(appHackHeroesProject
     # Style
     SOURCES
     Source/Cpp/Style/Style.h Source/Cpp/Style/Style.cpp
+
+    # Data
+    Source/Cpp/Data/Data.h Source/Cpp/Data/Data.cpp
+    Source/Cpp/Data/Database/Database.h Source/Cpp/Data/Database/Database.cpp
 )
 
 qt6_add_shaders(appHackHeroesProject
@@ -67,6 +70,7 @@ target_include_directories(appHackHeroesProject
         Source
     PRIVATE
         Source/Cpp/Style
+        Source/Cpp/Data
 )
 
 
@@ -84,6 +88,7 @@ set_target_properties(appHackHeroesProject PROPERTIES
 target_link_libraries(appHackHeroesProject
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Sql
+    PRIVATE Qt6::Concurrent
 )
 
 include(GNUInstallDirs)
