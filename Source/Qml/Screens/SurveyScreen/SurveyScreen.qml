@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 
+import HackHeroesProject
+
 Item
 {
     id: root
@@ -12,7 +14,8 @@ Item
 
     Image
     {
-        source: `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="35" fill="#D67300"/><path d="M32.9975 56.08C32.9975 56.8267 32.4642 57.2 31.3975 57.2C29.7175 57.2 28.5708 56.88 27.9575 56.24C27.3442 55.5733 27.0375 54.4667 27.0375 52.92C27.0642 50.52 27.7175 46.68 28.9975 41.4C30.3042 36.12 31.5308 32.2 32.6775 29.64C32.9708 28.9733 33.3842 28.3467 33.9175 27.76C34.4508 27.1467 35.1575 26.84 36.0375 26.84C36.4108 26.84 36.7175 27.0667 36.9575 27.52C37.2242 27.9733 37.3575 28.4933 37.3575 29.08C37.3575 29.6667 37.2508 30.5467 37.0375 31.72C36.8242 32.8667 36.5575 34.1867 36.2375 35.68C35.9175 37.1733 35.5575 38.7867 35.1575 40.52C33.7175 47.1067 32.9975 52.2933 32.9975 56.08Z" fill="black"/><circle cx="38" cy="18" r="4" fill="black"/></svg>`
+        source: Style.isDarkTheme ? `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="35" fill="#D67300"/><path d="M32.9975 56.08C32.9975 56.8267 32.4642 57.2 31.3975 57.2C29.7175 57.2 28.5708 56.88 27.9575 56.24C27.3442 55.5733 27.0375 54.4667 27.0375 52.92C27.0642 50.52 27.7175 46.68 28.9975 41.4C30.3042 36.12 31.5308 32.2 32.6775 29.64C32.9708 28.9733 33.3842 28.3467 33.9175 27.76C34.4508 27.1467 35.1575 26.84 36.0375 26.84C36.4108 26.84 36.7175 27.0667 36.9575 27.52C37.2242 27.9733 37.3575 28.4933 37.3575 29.08C37.3575 29.6667 37.2508 30.5467 37.0375 31.72C36.8242 32.8667 36.5575 34.1867 36.2375 35.68C35.9175 37.1733 35.5575 38.7867 35.1575 40.52C33.7175 47.1067 32.9975 52.2933 32.9975 56.08Z" fill="black"/><circle cx="38" cy="18" r="4" fill="black"/></svg>`
+        : `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="35" fill="#7636FF"/><path d="M32.9975 56.08C32.9975 56.8267 32.4642 57.2 31.3975 57.2C29.7175 57.2 28.5708 56.88 27.9575 56.24C27.3442 55.5733 27.0375 54.4667 27.0375 52.92C27.0642 50.52 27.7175 46.68 28.9975 41.4C30.3042 36.12 31.5308 32.2 32.6775 29.64C32.9708 28.9733 33.3842 28.3467 33.9175 27.76C34.4508 27.1467 35.1575 26.84 36.0375 26.84C36.4108 26.84 36.7175 27.0667 36.9575 27.52C37.2242 27.9733 37.3575 28.4933 37.3575 29.08C37.3575 29.6667 37.2508 30.5467 37.0375 31.72C36.8242 32.8667 36.5575 34.1867 36.2375 35.68C35.9175 37.1733 35.5575 38.7867 35.1575 40.52C33.7175 47.1067 32.9975 52.2933 32.9975 56.08Z" fill="white"/><circle cx="38" cy="18" r="4" fill="white"/></svg>`
         height: iconHeight / 4
         width: height
         anchors
@@ -37,7 +40,7 @@ Item
     {
         parent: good
         imageSource: good.source
-        selected: optionSelected === good
+        selected: optionSelected == good
         z: -1
     }
 
@@ -45,7 +48,7 @@ Item
     {
         parent: middle
         imageSource: middle.source
-        selected: optionSelected === middle
+        selected: optionSelected == middle
         z: -1
     }
 
@@ -53,7 +56,7 @@ Item
     {
         parent: bad
         imageSource: bad.source
-        selected: optionSelected === bad
+        selected: optionSelected == bad
         z: -1
     }
 
@@ -127,7 +130,7 @@ Item
     Text
     {
         text:  "Oceń dzisiejszy obiad"
-        color: "#FFB800"
+        color: Style.isDarkTheme ? Style.secondaryColor : "#995BFF"
         font.pixelSize: 65 / 4
         width: parent.width - 230 / 4
         horizontalAlignment: Text.AlignHCenter
@@ -144,10 +147,10 @@ Item
         id: dailyFoodbox
         width: parent.width - 224 / 4
         height: 300 / 4
-        color: "#303030"
+        color: Style.backgroundColor
         radius: 51 / 4
 
-        border.color: "#FFB800"
+        border.color: Style.secondaryColor
         border.width: 4 / 4
         anchors
         {
@@ -166,7 +169,7 @@ Item
 
             anchors.centerIn: parent
 
-            border.color: "#FF7A00"
+            border.color: Style.accentColor
             border.width: 9 / 4
 
             ColumnLayout
@@ -185,7 +188,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
                     text: "pierwsze danie"
-                    color: "white"
+                    color: Style.isDarkTheme ? "white" : "black"
                     font.pixelSize: 29 / 4
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -195,7 +198,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
                     text: "Zupa Kospińska"
-                    color: "#FFB800"
+                    color: Style.secondaryColor
                     font.pixelSize: 50 / 4
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -218,7 +221,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
                     text: "drugie danie"
-                    color: "white"
+                    color: Style.isDarkTheme ? "white" : "black"
                     font.pixelSize: 29 / 4
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -228,7 +231,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
                     text: "Kotlet Kołodziejski"
-                    color: "#FFB800"
+                    color: Style.secondaryColor
                     font.pixelSize: 50 / 4
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -249,7 +252,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
                     text: "ziemniaki"
-                    color: "#FFB800"
+                    color: Style.detailColor
                     opacity: 0.76
                     font.pixelSize: 29 / 4
                     Layout.alignment: Qt.AlignHCenter
@@ -260,7 +263,7 @@ Item
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
                     text: "kapusta"
-                    color: "#FFB800"
+                    color: Style.detailColor
                     opacity: 0.76
                     font.pixelSize: 29 / 4
                     Layout.alignment: Qt.AlignHCenter

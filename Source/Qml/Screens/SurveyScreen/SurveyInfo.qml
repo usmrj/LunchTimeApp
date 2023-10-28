@@ -1,5 +1,7 @@
 import QtQuick 2.15
 
+import HackHeroesProject
+
 Item
 {
     id: root
@@ -38,7 +40,7 @@ Item
     {
         id: background
         anchors.fill: parent
-        color: "#303030"
+        color: Style.backgroundColor
         opacity: 0.8
     }
 
@@ -47,10 +49,10 @@ Item
         id: infobox
         width: parent.width - 224 / 4
         height: 500 / 4
-        color: "#303030"
+        color: Style.backgroundColor
         radius: 51 / 4
 
-        border.color: "#FFB800"
+        border.color: Style.secondaryColor
         border.width: 4 / 4
         anchors
         {
@@ -74,7 +76,7 @@ Item
 
             anchors.centerIn: parent
 
-            border.color: "#FF7A00"
+            border.color: Style.accentColor
             border.width: 9 / 4
 
             Text
@@ -92,7 +94,7 @@ Item
      wybór.
     • Wasze głosy pomagają szkole dobierać
      smaczne obiady"
-                color: "#FFB800"
+                color: Style.isDarkTheme ? Style.secondaryColor : "#995BFF"
                 font.pixelSize: 36 / 4
             }
 

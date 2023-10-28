@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Effects
 
+import HackHeroesProject
+
 Item
 {
     id:root
@@ -14,7 +16,7 @@ Item
     function changeScreenContentText(newText)
     {
         if(newText === "")
-            contentText = `<font color="#000000">Cześć, </font> <font color="#FF8A00">${name}</font>`
+            contentText = `<font color="${Style.textColor}">Cześć, </font> <font color="${Style.mainColor}">${name}</font>`
         else
             contentText = newText
 
@@ -61,15 +63,14 @@ Item
         anchors.top: parent.top
         width: parent.width
         height: parent.height
-        color: "#444444"
-
+        color: Style.barColor
         Rectangle
         {
             id: logo
             height: 123 / 4
             width: height
             radius: 41 / 4
-            color: "#FF8A00"
+            color: Style.mainColor
 
             anchors
             {
@@ -91,7 +92,7 @@ Item
         {
             id: timeLabel
             text: "15:32"
-            color: "#000000"
+            color: Style.textColor
             font
             {
                 pixelSize: 54 / 4
@@ -109,7 +110,7 @@ Item
         Label
         {
             text: "18 paź"
-            color: "#000000"
+            color: Style.textColor
             font
             {
                 pixelSize: 30 / 4
@@ -123,12 +124,11 @@ Item
                 bottom: timeLabel.top
             }
         }
-
         Label
         {
             id: screenContentText
-            text: `<font color="#000000">Cześć, </font> <font color="#FF8A00">${name}</font>`
-            color: "#FF8A00"
+            text: `<font color="${Style.textColor}">Cześć, </font> <font color="${Style.mainColor}">${name}</font>`
+            color: Style.mainColor
             anchors
             {
                 right: parent.right

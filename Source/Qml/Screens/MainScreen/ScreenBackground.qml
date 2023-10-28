@@ -1,10 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Effects
 
+import HackHeroesProject
+
 Rectangle
 {
     anchors.fill: parent
-    color: "#303030"
+    color: Style.backgroundColor
 
     function screenMoved(index)
     {
@@ -36,6 +38,10 @@ Rectangle
             break;
 
         case 3:
+            if(stripeMoveAnimation.running)
+                stripeMoveAnimation.stop()
+            stripeMoveAnimation.to = -1550 / 4
+            stripeMoveAnimation.start()
             break;
 
         default:
@@ -51,7 +57,7 @@ Rectangle
         id: stripe
         height: 540 / 4
         width: 2600
-        opacity: 0.54
+        opacity: Style.isDarkTheme ? 0.54 : 1.0
         rotation: -57
         anchors
         {
@@ -76,7 +82,7 @@ Rectangle
             id: yellowStripe
             width: parent.width
             height: 180 / 4
-            color: "#FFB800"
+            color: Style.secondaryColor
             antialiasing: true
         }
 
@@ -85,7 +91,7 @@ Rectangle
             id: orangeStripe
             width: parent.width
             height: 360 / 4
-            color: "#FF7A00"
+            color: Style.accentColor
             anchors.top: yellowStripe.bottom
             antialiasing: true
         }
