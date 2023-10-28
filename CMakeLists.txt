@@ -44,7 +44,7 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/Screens/SurveyScreen/OptionHighlight.qml
 
 
-#    Assets/Fonts/Roboto-Light.ttf
+    #    Assets/Fonts/Roboto-Light.ttf
 
     RESOURCES
     Assets/Fonts/Roboto-Thin.ttf
@@ -56,6 +56,7 @@ qt_add_qml_module(appHackHeroesProject
     # Data
     Source/Cpp/Data/Data.h Source/Cpp/Data/Data.cpp
     Source/Cpp/Data/Database/Database.h Source/Cpp/Data/Database/Database.cpp
+    Source/Cpp/Data/Time/DateTime.h Source/Cpp/Data/Time/DateTime.cpp
 )
 
 qt6_add_shaders(appHackHeroesProject
@@ -70,7 +71,9 @@ target_include_directories(appHackHeroesProject
         Source
     PRIVATE
         Source/Cpp/Style
+        Source/Cpp/Data/Time
         Source/Cpp/Data
+
 )
 
 
@@ -78,7 +81,7 @@ target_include_directories(appHackHeroesProject
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 set_target_properties(appHackHeroesProject PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appHackHeroesProject
+    #    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appHackHeroesProject
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE

@@ -91,7 +91,7 @@ Item
         Label
         {
             id: timeLabel
-            text: "15:32"
+            text: DateTime.CurrentTime
             color: Style.textColor
             font
             {
@@ -109,7 +109,7 @@ Item
 
         Label
         {
-            text: "18 paź"
+            text: DateTime.CurrentDate
             color: Style.textColor
             font
             {
