@@ -31,6 +31,10 @@ public:
 
     bool loading() const;
     void setLoading(bool newLoading);
+
+public:
+
+    Q_INVOKABLE QString getQrContent() const;
 };
 
 #endif // DATA_H
