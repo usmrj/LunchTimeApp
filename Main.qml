@@ -79,18 +79,10 @@ Window
         swipeView: swipeView
     }
 
-    Rectangle
+    Loader
     {
+        source: "Source/Qml/StaticComponents/LoadingScreen.qml"
+        active: Data.loading
         anchors.fill: parent
-        color: "red"
-
-        Text
-        {
-            anchors.centerIn: parent
-            text: "loading"
-        }
-
-        visible: Data.loading
     }
-
 }
