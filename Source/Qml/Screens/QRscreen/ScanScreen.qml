@@ -40,8 +40,6 @@ Item
         radius:  45
         color: "red"
         opacity: 0.2
-
-
     }
 
     Image

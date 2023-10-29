@@ -11,7 +11,7 @@ Style::Style(QObject *parent)
     , m_backgroundColor{48, 48, 48}
     , m_isDarkTheme{true}
 {
-    changeTheme();
+    //changeTheme();
 }
 
 void Style::changeTheme()

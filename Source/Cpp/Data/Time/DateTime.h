@@ -46,6 +46,10 @@ private:
 private:
 
     class QTimer* RefreshDateTimer;
+
+public:
+
+    Q_INVOKABLE int getCurrentDay() const;
 };
 
 #endif // DATETIME_H

@@ -1,13 +1,13 @@
 #include "Data.h"
 #include "Source/Cpp/Data/Database/Database.h"
-#include "Source/Cpp/Data/Time/DateTime.h"
 #include <QDebug>
 #include <QtConcurrent>
 
 Data::Data(QObject *parent)
     : QObject{parent}
     , m_Database{new Database}
-    , m_loading(true)
+    , m_loading{true}
+    , m_sendingSurvey{false}
 {
     if(m_Database != nullptr)
     {
@@ -16,15 +16,71 @@ Data::Data(QObject *parent)
             const QJsonDocument& result1 = m_Database->Query("SELECT * FROM Dishes");
             qDebug() << result1;
 
+            RetrieveWeekServings();
+
             setLoading(false);
         });
     }
+
+    WeekDishes.insert(1, {"Zupa", "Schabowy", "Ziem", "Kap"});
 }
 
 Data::~Data()
 {
     delete m_Database;
 }
+
+void Data::RetrieveWeekServings()
+{
+    const QJsonDocument& result1 = m_Database->Query("SELECT * FROM ServedDishes");
+    qDebug() << result1;
+}
+
+QString Data::getDish(int InDay, int Value) const
+{
+    switch(Value)
+    {
+        case 1:
+        return WeekDishes[InDay].FirstDish;
+        break;
+
+        case 2:
+        return WeekDishes[InDay].MainDish;
+        break;
+
+        case 3:
+        return WeekDishes[InDay].Ingr1;
+        break;
+
+        case 4:
+        return WeekDishes[InDay].Ingr2;
+        break;
+
+        default:
+        break;
+    }
+
+    return "";
+}
+
+void Data::sendSurvey(int Choice)
+{
+    if(m_Database != nullptr)
+    {
+        setSendingSurvey(true);
+
+        QFuture<void> future = QtConcurrent::run(m_Database->Connect).then([this, &Choice]()
+        {
+            QString Query = "INSERT INTO `Feedback` (`feedback`, `StudentId`, `SchoolId`, `DishId`) VALUES ('choice', '1', '2', '3');";
+            Query.replace("choice", QString::number(Choice));
+
+            m_Database->QueryNoRet(Query);
+
+            setSendingSurvey(false);
+        });
+    }
+}
+
 
 bool Data::loading() const
 {
@@ -41,5 +97,19 @@ void Data::setLoading(bool newLoading)
 
 QString Data::getQrContent() const
 {
-    return "test";
+    return "bajo jajo bajo jajo";
+}
+
+
+bool Data::sendingSurvey() const
+{
+    return m_sendingSurvey;
+}
+
+void Data::setSendingSurvey(bool newSendingSurvey)
+{
+    if (m_sendingSurvey == newSendingSurvey)
+        return;
+    m_sendingSurvey = newSendingSurvey;
+    emit sendingSurveyChanged();
 }
