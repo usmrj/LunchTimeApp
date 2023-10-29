@@ -1,5 +1,7 @@
 import QtQuick 2.15
 
+import HackHeroesProject
+
 Item
 {
     id: root
@@ -38,18 +40,15 @@ Item
         radius:  45
         color: "red"
         opacity: 0.2
-
-
     }
-    Rectangle
+
+    Image
     {
         anchors.centerIn: colorburn
-        Text
+
+        Component.onCompleted:
         {
-            anchors.centerIn: parent
-            text: "QR CODE HERE"
+            source = `https://api.qrserver.com/v1/create-qr-code/?data=${Data.getQrContent()}&size=${colorburn.height}x${colorburn.height}&format=svg`
         }
     }
-
-
 }

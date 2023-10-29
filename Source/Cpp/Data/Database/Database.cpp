@@ -49,7 +49,8 @@ void Database::Connect()
 
 QJsonDocument Database::Query(const QString &InQuery)
 {
-    QSqlQuery Query(InQuery);
+    QSqlQuery Query;
+    Query.prepare(InQuery);
     QJsonDocument Json;
 
     if (Query.exec())
@@ -72,5 +73,12 @@ QJsonDocument Database::Query(const QString &InQuery)
     }
 
     return Json;
+}
+
+void Database::QueryNoRet(const QString &InQuery)
+{
+    QSqlQuery Query;
+    Query.prepare(InQuery);
+    Query.exec();
 }
 

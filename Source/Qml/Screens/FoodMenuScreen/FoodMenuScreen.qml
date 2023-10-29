@@ -1,5 +1,6 @@
 import QtQuick 2.15
 
+import HackHeroesProject
 
 Item
 {
@@ -11,10 +12,15 @@ Item
         id: mondayTile
         innerText: "Poniedziałek"
 
-        mainDish: "Schabowy"
-        secondDish: "Zupa grzybowa"
-        firstIngr: "Ziemniaki"
-        secondIngr: "Kiszona kapusta"
+        secondDish: Data.getDish(1, 1)
+        mainDish: Data.getDish(1, 2)
+        firstIngr: Data.getDish(1, 3)
+        secondIngr: Data.getDish(1, 4)
+
+        Component.onCompleted:
+        {
+            console.log(Data.getDish("Monday", 1))
+        }
 
         anchors
         {
@@ -37,10 +43,11 @@ Item
     {
         id: wednesdayTile
         innerText: "Środa"
-        mainDish: "Schabowy"
-        secondDish: "Zupa grzybowa"
-        firstIngr: "Ziemniaki"
-        secondIngr: "Kiszona kapusta"
+
+        secondDish: Data.getDish(3, 1)
+        mainDish: Data.getDish(3, 2)
+        firstIngr: Data.getDish(3, 3)
+        secondIngr: Data.getDish(3, 4)
 
         anchors
         {
@@ -62,10 +69,11 @@ Item
     {
         id: fridayTile
         innerText: "Piątek"
-        mainDish: "Schabowy"
-        secondDish: "Zupa grzybowa"
-        firstIngr: "Ziemniaki"
-        secondIngr: "Kiszona kapusta"
+
+        secondDish: Data.getDish(5, 1)
+        mainDish: Data.getDish(5, 2)
+        firstIngr: Data.getDish(5, 3)
+        secondIngr: Data.getDish(5, 4)
 
         anchors
         {
@@ -87,10 +95,11 @@ Item
     {
         id: tuesdayTile
         innerText: "Wtorek"
-        mainDish: "Schabowy"
-        secondDish: "Zupa grzybowa"
-        firstIngr: "Ziemniaki"
-        secondIngr: "Kiszona kapusta"
+
+        secondDish: Data.getDish(2, 1)
+        mainDish: Data.getDish(2, 2)
+        firstIngr: Data.getDish(2, 3)
+        secondIngr: Data.getDish(2, 4)
 
         anchors
         {
@@ -113,10 +122,11 @@ Item
     {
         id: thursdayTile
         innerText: "Czwartek"
-        mainDish: "Kotlet Schabowy"
-        secondDish: "Zupa grzybowa"
-        firstIngr: "Ziemniaki"
-        secondIngr: "Kiszona kapusta"
+
+        secondDish: Data.getDish(4, 1)
+        mainDish: Data.getDish(4, 2)
+        firstIngr: Data.getDish(4, 3)
+        secondIngr: Data.getDish(4, 4)
 
         anchors
         {

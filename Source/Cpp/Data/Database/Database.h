@@ -13,6 +13,7 @@ public:
 public:
 
     class QJsonDocument Query(const QString& InQuery);
+    void QueryNoRet(const QString& InQuery);
 
     static QWeakPointer<class QSqlDatabase> DatabaseConnection;
 

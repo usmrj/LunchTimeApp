@@ -61,14 +61,11 @@ void DateTime::UpdateDateTime()
     QString NewTime = CurrentDateTime.time().toString();
     NewTime.chop(3);
 
-    if(CurrentDateTime.time().hour() == 0 && CurrentDateTime.time().minute() == 0 && m_CurrentTime[0] == '2' && m_CurrentTime[1] == '3')
+    if(CurrentDateTime.time().hour() == 0 && CurrentDateTime.time().minute() == 0)
     {
-        qDebug() << "send survey";
         QString NewDate = QString::number(QDateTime::currentDateTime().date().day()) + " " + QString::number(QDateTime::currentDateTime().date().month());
         FormatDate(NewDate);
         setCurrentDate(NewDate);
-
-        //send survey...
     }
 
     setCurrentTime(NewTime);
@@ -118,4 +115,10 @@ void DateTime::FormatDate(QString &OutDate)
     {
         OutDate.remove(0, 1);
     }
+}
+
+int DateTime::getCurrentDay() const
+{
+    //return 1;
+    return QDateTime::currentDateTime().date().dayOfWeek();
 }
