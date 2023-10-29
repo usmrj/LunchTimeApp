@@ -38,3 +38,8 @@ void Data::setLoading(bool newLoading)
     m_loading = newLoading;
     emit loadingChanged();
 }
+
+QString Data::getQrContent() const
+{
+    return "test";
+}
