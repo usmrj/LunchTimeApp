@@ -43,7 +43,7 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/Screens/SurveyScreen/SurveyInfo.qml
     Source/Qml/Screens/SurveyScreen/OptionHighlight.qml
     Source/Qml/StaticComponents/LoadingScreen.qml
-
+    Source/Qml/Screens/LoginScreen/LoginScreen.qml
 
     #    Assets/Fonts/Roboto-Light.ttf
 

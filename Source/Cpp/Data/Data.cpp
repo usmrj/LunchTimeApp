@@ -2,6 +2,7 @@
 #include "Source/Cpp/Data/Database/Database.h"
 #include <QDebug>
 #include <QtConcurrent>
+#include <QCryptographicHash>
 
 Data::Data(QObject *parent)
     : QObject{parent}
@@ -14,13 +15,18 @@ Data::Data(QObject *parent)
         QFuture<void> future = QtConcurrent::run(m_Database->Connect).then([this]()
         {
             const QJsonDocument& result1 = m_Database->Query("SELECT * FROM Dishes");
-            qDebug() << result1;
+            //qDebug() << result1;
 
             RetrieveWeekServings();
 
             setLoading(false);
         });
     }
+
+    QString haslo = "password123";
+    QByteArray bytes = QCryptographicHash::hash(haslo.toUtf8(), QCryptographicHash::Blake2s_256);
+    QString digest = QString(bytes.toHex());
+    qDebug() << digest;
 
     WeekDishes.insert(1, {"Zupa", "Schabowy", "Ziem", "Kap"});
 }
@@ -33,7 +39,7 @@ Data::~Data()
 void Data::RetrieveWeekServings()
 {
     const QJsonDocument& result1 = m_Database->Query("SELECT * FROM ServedDishes");
-    qDebug() << result1;
+    //qDebug() << result1;
 }
 
 QString Data::getDish(int InDay, int Value) const

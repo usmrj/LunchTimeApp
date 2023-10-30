@@ -9,6 +9,8 @@ import "Source/Qml/Screens/QRscreen"
 import "Source/Qml/Screens/SurveyScreen"
 import "Source/Qml/StaticComponents"
 
+import "Source/Qml/Screens/LoginScreen"
+
 import HackHeroesProject
 
 Window
@@ -72,7 +74,6 @@ Window
         }
     }
 
-
     StaticScreenContent
     {
         id: staticScreenContent
@@ -83,6 +84,13 @@ Window
     {
         source: "Source/Qml/StaticComponents/LoadingScreen.qml"
         active: Data.loading
+        anchors.fill: parent
+    }
+
+    Loader
+    {
+        source: "Source/Qml/Screens/LoginScreen/LoginScreen.qml"
+        active: true
         anchors.fill: parent
     }
 }
