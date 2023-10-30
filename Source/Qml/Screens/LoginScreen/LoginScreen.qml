@@ -1,5 +1,8 @@
 import QtQuick  2.15
 import QtQuick.Controls 6.6
+
+import HackHeroesProject
+
 Item
 {
     id: root
@@ -166,5 +169,10 @@ Item
         radius: 15
         text: "Zaloguj się"
         font.pixelSize: 13
+
+        onClicked:
+        {
+            Data.tryLogin(login.text, password.text)
+        }
     }
 }

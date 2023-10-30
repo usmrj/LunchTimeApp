@@ -23,11 +23,6 @@ Data::Data(QObject *parent)
         });
     }
 
-    QString haslo = "password123";
-    QByteArray bytes = QCryptographicHash::hash(haslo.toUtf8(), QCryptographicHash::Blake2s_256);
-    QString digest = QString(bytes.toHex());
-    qDebug() << digest;
-
     WeekDishes.insert(1, {"Zupa", "Schabowy", "Ziem", "Kap"});
 }
 
@@ -87,6 +82,28 @@ void Data::sendSurvey(int Choice)
     }
 }
 
+void Data::tryLogin(const QString &StudentNumber, const QString &Password)
+{
+    if(m_Database != nullptr)
+    {
+        QFuture<void> future = QtConcurrent::run(m_Database->Connect).then([this, &Password, &StudentNumber]()
+        {
+            QByteArray Bytes = QCryptographicHash::hash(Password.toUtf8(), QCryptographicHash::Blake2s_256);
+            QString Hashed = QString(Bytes.toHex());
+
+            QString Query = "SELECT * FROM `students` WHERE password = 'pasłord' AND StudentId = 'studentajdi';";
+            Query.replace("pasłord", Hashed);
+            Query.replace("studentajdi", StudentNumber);
+
+           const QJsonDocument& result1 = m_Database->Query(Query);
+           qDebug() << result1;
+
+//           RetrieveWeekServings();
+
+//           setLoading(false);
+        });
+    }
+}
 
 bool Data::loading() const
 {
@@ -119,3 +136,5 @@ void Data::setSendingSurvey(bool newSendingSurvey)
     m_sendingSurvey = newSendingSurvey;
     emit sendingSurveyChanged();
 }
+
+

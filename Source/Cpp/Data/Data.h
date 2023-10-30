@@ -65,6 +65,10 @@ public:
     Q_INVOKABLE void sendSurvey(int Choice);
     bool sendingSurvey() const;
     void setSendingSurvey(bool newSendingSurvey);
+
+public:
+
+    Q_INVOKABLE void tryLogin(const QString& StudentNumber, const QString& Password);
 };
 
 #endif // DATA_H
