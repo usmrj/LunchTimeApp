@@ -39,15 +39,15 @@ void Database::Connect()
 {
     QSqlDatabase Database = QSqlDatabase::addDatabase("QMYSQL");
 
-//    Database.setDatabaseName("lunchlinkdb");
-//    Database.setHostName("www.db4free.net");
-//    Database.setPassword("@adSZKr2!PVFxK3");
-//    Database.setUserName("hitormissmedude");
-
     Database.setDatabaseName("lunchlinkdb");
-    Database.setHostName("localhost");
-    Database.setPassword("");
-    Database.setUserName("root");
+    Database.setHostName("www.db4free.net");
+    Database.setPassword("@adSZKr2!PVFxK3");
+    Database.setUserName("hitormissmedude");
+
+//    Database.setDatabaseName("lunchlinkdb");
+//    Database.setHostName("localhost");
+//    Database.setPassword("");
+//    Database.setUserName("root");
 
     Database.open();
 

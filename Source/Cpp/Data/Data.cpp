@@ -91,9 +91,9 @@ void Data::tryLogin(const QString &StudentNumber, const QString &Password)
             QByteArray Bytes = QCryptographicHash::hash(Password.toUtf8(), QCryptographicHash::Blake2s_256);
             QString Hashed = QString(Bytes.toHex());
 
-            QString Query = "SELECT * FROM `students` WHERE password = 'pasłord' AND StudentId = 'studentajdi';";
-            Query.replace("pasłord", Hashed);
-            Query.replace("studentajdi", StudentNumber);
+            QString Query = "SELECT * FROM `students` WHERE password = 'password' AND StudentId = 'studentId';";
+            Query.replace("password", Hashed);
+            Query.replace("studentId", StudentNumber);
 
            const QJsonDocument& result1 = m_Database->Query(Query);
            qDebug() << result1;
