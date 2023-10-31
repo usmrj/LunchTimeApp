@@ -68,7 +68,6 @@ Item
                     swipeView.currentIndex--
                 else
                     swipeView.currentIndex = 0
-
                 break;
 
 

@@ -125,7 +125,6 @@ Item
                 {
                     horizontalCenter: parent.horizontalCenter
                     bottom: parent.bottom
-                    bottomMargin: 50 / 4
                 }
 
                 Label

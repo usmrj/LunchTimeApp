@@ -4,22 +4,33 @@
 #include <QString>
 #include <QWeakPointer>
 #include <QFuture>
+#include <QObject>
 
-class Database
+enum DatabaseOperation
 {
-public:
-    Database();
+    TryLogin = 1,
+    SendSurvey = 2
+};
+
+class Database : public QObject
+{
+    Q_OBJECT
 
 public:
 
-    class QJsonDocument Query(const QString& InQuery);
-    void QueryNoRet(const QString& InQuery);
-
-    static QWeakPointer<class QSqlDatabase> DatabaseConnection;
+    explicit Database(QObject *parent = nullptr);
+    ~Database();
 
 public:
 
-    static void Connect();
+    class QNetworkAccessManager* NetworkManager;
+
+public:
+
+    void Get(const QString& Action);
+    void Post(const QString& Action, const QMap<QString, QString>& InputMap);
+    QMetaObject::Connection ConnectCallbackFunction(std::function<void(class QNetworkReply*)> Callback);
+    void DisconnectCallbackFunction(class QMetaObject::Connection connection);
 
 };
 

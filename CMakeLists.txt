@@ -12,8 +12,6 @@ set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 find_package(Qt6 6.4 REQUIRED COMPONENTS
     Quick
     ShaderTools
-    Sql
-    Concurrent
 )
 
 qt_standard_project_setup()
@@ -43,7 +41,7 @@ qt_add_qml_module(appHackHeroesProject
     Source/Qml/Screens/SurveyScreen/SurveyInfo.qml
     Source/Qml/Screens/SurveyScreen/OptionHighlight.qml
     Source/Qml/StaticComponents/LoadingScreen.qml
-
+    Source/Qml/Screens/LoginScreen/LoginScreen.qml
 
     #    Assets/Fonts/Roboto-Light.ttf
 
@@ -91,8 +89,6 @@ set_target_properties(appHackHeroesProject PROPERTIES
 
 target_link_libraries(appHackHeroesProject
     PRIVATE Qt6::Quick
-    PRIVATE Qt6::Sql
-    PRIVATE Qt6::Concurrent
 )
 
 include(GNUInstallDirs)

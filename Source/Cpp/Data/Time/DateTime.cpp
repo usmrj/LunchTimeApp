@@ -117,7 +117,7 @@ void DateTime::FormatDate(QString &OutDate)
     }
 }
 
-int DateTime::getCurrentDay() const
+int DateTime::getCurrentDay()
 {
     //return 1;
     return QDateTime::currentDateTime().date().dayOfWeek();

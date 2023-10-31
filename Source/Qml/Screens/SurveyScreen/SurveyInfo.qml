@@ -30,11 +30,12 @@ Item
             surveyScreen.infoBoxOpened = false
         }
 
-        onContainsMouseChanged:
+        onContainsPressChanged:
         {
             surveyScreen.infoBoxOpened = false
         }
     }
+
 
     Rectangle
     {

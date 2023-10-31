@@ -16,6 +16,45 @@ Item
     property bool enableClicks: true
     property bool acceptButtonActive: false
 
+    property string mainDish: ""
+    property string secondDish: ""
+    property string firstIngr: ""
+    property string secondIngr: ""
+
+    Connections
+    {
+        target: Data
+        function onMenuUpdated()
+        {
+            mainDish = Data.getDish(currentDayOfWeek, 1)
+            secondDish = Data.getDish(currentDayOfWeek, 2)
+            firstIngr = Data.getDish(currentDayOfWeek, 3)
+            secondIngr = Data.getDish(currentDayOfWeek, 4)
+        }
+
+        function onSurveyDataUpdated(surveyChoice)
+        {
+            if(surveyChoice !== 0)
+            {
+                switch(surveyChoice)
+                {
+                case 1:
+                    optionSelected = bad
+                    break
+                case 2:
+                    optionSelected = middle
+                    break
+                case 3:
+                    optionSelected = bad
+                    break
+                default:
+                    break
+                }
+                enableClicks = false
+            }
+        }
+    }
+
     Image
     {
         source: Style.isDarkTheme ? `data:image/svg+xml, <svg width="${height}" height="${height}" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="35" fill="#D67300"/><path d="M32.9975 56.08C32.9975 56.8267 32.4642 57.2 31.3975 57.2C29.7175 57.2 28.5708 56.88 27.9575 56.24C27.3442 55.5733 27.0375 54.4667 27.0375 52.92C27.0642 50.52 27.7175 46.68 28.9975 41.4C30.3042 36.12 31.5308 32.2 32.6775 29.64C32.9708 28.9733 33.3842 28.3467 33.9175 27.76C34.4508 27.1467 35.1575 26.84 36.0375 26.84C36.4108 26.84 36.7175 27.0667 36.9575 27.52C37.2242 27.9733 37.3575 28.4933 37.3575 29.08C37.3575 29.6667 37.2508 30.5467 37.0375 31.72C36.8242 32.8667 36.5575 34.1867 36.2375 35.68C35.9175 37.1733 35.5575 38.7867 35.1575 40.52C33.7175 47.1067 32.9975 52.2933 32.9975 56.08Z" fill="black"/><circle cx="38" cy="18" r="4" fill="black"/></svg>`
@@ -88,6 +127,7 @@ Item
                 enabled: enableClicks
                 onClicked:
                 {
+                    console.log(optionSelected)
                     optionSelected = good
                 }
             }
@@ -329,7 +369,7 @@ Item
                 {
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
-                    text: Data.getDish(currentDayOfWeek, 1)
+                    text: mainDish
                     color: Style.secondaryColor
                     font.pixelSize: 50 / 4
                     Layout.alignment: Qt.AlignHCenter
@@ -339,7 +379,7 @@ Item
             ColumnLayout
             {
                 visible: !bShowDish
-                id: mainDish
+                id: mainDishColumn
                 anchors
                 {
                     top: parent.top
@@ -363,7 +403,7 @@ Item
                 {
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
-                    text: Data.getDish(currentDayOfWeek, 2)
+                    text: secondDish
                     color: Style.secondaryColor
                     font.pixelSize: 50 / 4
                     Layout.alignment: Qt.AlignHCenter
@@ -376,8 +416,8 @@ Item
                 spacing: -1
                 anchors
                 {
-                    top: mainDish.top
-                    horizontalCenter: mainDish.horizontalCenter
+                    top: mainDishColumn.top
+                    horizontalCenter: mainDishColumn.horizontalCenter
                     topMargin: 28
                 }
 
@@ -385,7 +425,7 @@ Item
                 {
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
-                    text: Data.getDish(currentDayOfWeek, 3)
+                    text: firstIngr
                     color: Style.detailColor
                     opacity: 0.76
                     font.pixelSize: 29 / 4
@@ -396,7 +436,7 @@ Item
                 {
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
-                    text: Data.getDish(currentDayOfWeek, 4)
+                    text: secondIngr
                     color: Style.detailColor
                     opacity: 0.76
                     font.pixelSize: 29 / 4

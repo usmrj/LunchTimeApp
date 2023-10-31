@@ -1,84 +1,70 @@
 #include "Database.h"
-#include <QtSql>
-#include <QSqlDatabase>
-#include <QDebug>
-#include <QSharedPointer>
-#include <QtConcurrent>
-
-QWeakPointer<QSqlDatabase> Database::DatabaseConnection = QSharedPointer<QSqlDatabase>(nullptr);
-//QString Database::DatabaseName = "";
-//QString Database::DatabaseHost = "";
-//QString Database::UserName = "";
-//QString Database::Password = "";
+#include "qjsondocument.h"
+#include "qjsonobject.h"
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QUrlQuery>
 
 
-Database::Database()
+Database::Database(QObject *parent)
+    : NetworkManager{new QNetworkAccessManager}
 {
-    qDebug() << "test";
+
 }
 
-//QFuture<void> Database::open()
-//{
-//    return QtConcurrent::run(m_pool, [this]()
+Database::~Database()
+{
+
+}
+
+QMetaObject::Connection Database::ConnectCallbackFunction(std::function<void(QNetworkReply*)> Callback)
+{
+    return connect(NetworkManager, &QNetworkAccessManager::finished, Callback);
+}
+
+void Database::DisconnectCallbackFunction(QMetaObject::Connection connection)
+{
+    disconnect(connection);
+}
+
+void Database::Get(const QString& Action)
+{
+    //NetworkManager->get(QNetworkRequest(QUrl("http://localhost/index.php/" + Action)));
+    NetworkManager->get(QNetworkRequest(QUrl("http://localhost:3000/api/" + Action)));
+}
+
+void Database::Post(const QString& Action, const QMap<QString, QString>& InputMap)
+{
+//    QUrl url("http://localhost/index.php/" + Action);
+
+//    QUrlQuery postData;
+//    for (const QString &Key : InputMap.keys())
 //    {
-//        auto database = QSqlDatabase::addDatabase("QSQL", "main-connection");
+//        postData.addQueryItem(Key, InputMap[Key]);
+//    }
 
-//        database.setHostName("lunchlidnkdb");
-//        database.setDatabaseName("www.db4free.net");
-//        database.setPassword("@adSZKr2!PVFxK3");
-//        database.setUserName("hitormissmedude");
+//    QByteArray postDataBytes = postData.toString(QUrl::FullyEncoded).toUtf8();
 
-//        database.open();
+//    QNetworkRequest request(url);
+//    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
-//        // of course you should do some more checks here to see
-//        // whether everything went well :)
-//    });
-//}
+    QUrl url("http://localhost:3000/api/" + Action);
 
-void Database::Connect()
-{
-    QSqlDatabase Database = QSqlDatabase::addDatabase("QMYSQL");
+    QJsonDocument jsonData;
+    QJsonObject jsonObject;
 
-    Database.setDatabaseName("lunchlinkdb");
-    Database.setHostName("www.db4free.net");
-    Database.setPassword("@adSZKr2!PVFxK3");
-    Database.setUserName("hitormissmedude");
-
-    Database.open();
-}
-
-QJsonDocument Database::Query(const QString &InQuery)
-{
-    QSqlQuery Query;
-    Query.prepare(InQuery);
-    QJsonDocument Json;
-
-    if (Query.exec())
+    for (const QString &Key : InputMap.keys())
     {
-        QJsonArray RecordsArray;
-
-        while (Query.next())
-        {
-            QJsonObject DataRecord;
-
-            for (int i = 0; i < Query.record().count(); i++)
-            {
-                DataRecord[Query.record().fieldName(i)] = QJsonValue::fromVariant(Query.value(i));
-            }
-
-            RecordsArray.push_back(DataRecord);
-        }
-
-        Json.setArray(RecordsArray);
+        jsonObject[Key] = InputMap[Key];
     }
+    jsonData.setObject(jsonObject);
 
-    return Json;
+    QByteArray postDataBytes = jsonData.toJson(QJsonDocument::Compact);
+
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    NetworkManager->post(request, postDataBytes);
 }
 
-void Database::QueryNoRet(const QString &InQuery)
-{
-    QSqlQuery Query;
-    Query.prepare(InQuery);
-    Query.exec();
-}
 

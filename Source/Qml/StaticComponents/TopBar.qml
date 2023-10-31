@@ -6,17 +6,27 @@ import HackHeroesProject
 
 Item
 {
-    id:root
+    id: root
     width: parent.width
     height: 179 / 4
 
-    property string name: "Maks"
+    Connections
+    {
+        target: Data
+        function onLoggedIn()
+        {
+            studentName = Data.getStudentName()
+            changeScreenContentText("")
+        }
+    }
+
+    property string studentName: "Maks"
     property string contentText: ""
 
     function changeScreenContentText(newText)
     {
         if(newText === "")
-            contentText = `<font color="${Style.textColor}">Cześć, </font> <font color="${Style.mainColor}">${name}</font>`
+            contentText = `<font color="${Style.textColor}">Cześć, </font> <font color="${Style.mainColor}">${studentName}</font>`
         else
             contentText = newText
 
@@ -127,7 +137,7 @@ Item
         Label
         {
             id: screenContentText
-            text: `<font color="${Style.textColor}">Cześć, </font> <font color="${Style.mainColor}">${name}</font>`
+            text: "Zaloguj się"
             color: Style.mainColor
             anchors
             {
