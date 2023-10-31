@@ -12,8 +12,6 @@ set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 find_package(Qt6 6.4 REQUIRED COMPONENTS
     Quick
     ShaderTools
-    Sql
-    Concurrent
 )
 
 qt_standard_project_setup()
@@ -91,8 +89,6 @@ set_target_properties(appHackHeroesProject PROPERTIES
 
 target_link_libraries(appHackHeroesProject
     PRIVATE Qt6::Quick
-    PRIVATE Qt6::Sql
-    PRIVATE Qt6::Concurrent
 )
 
 include(GNUInstallDirs)

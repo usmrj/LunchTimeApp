@@ -7,15 +7,42 @@ Item
     id: root
     anchors.fill: parent
 
+    Connections
+    {
+        target: Data
+        function onMenuUpdated()
+        {
+            mondayTile.secondDish = Data.getDish(1, 1)
+            mondayTile.mainDish = Data.getDish(1, 2)
+            mondayTile.firstIngr = Data.getDish(1, 3)
+            mondayTile.secondIngr = Data.getDish(1, 4)
+
+            tuesdayTile.secondDish = Data.getDish(2, 1)
+            tuesdayTile.mainDish = Data.getDish(2, 2)
+            tuesdayTile.firstIngr = Data.getDish(2, 3)
+            tuesdayTile.secondIngr = Data.getDish(2, 4)
+
+            wednesdayTile.secondDish = Data.getDish(3, 1)
+            wednesdayTile.mainDish = Data.getDish(3, 2)
+            wednesdayTile.firstIngr = Data.getDish(3, 3)
+            wednesdayTile.secondIngr = Data.getDish(3, 4)
+
+            thursdayTile.secondDish = Data.getDish(4, 1)
+            thursdayTile.mainDish = Data.getDish(4, 2)
+            thursdayTile.firstIngr = Data.getDish(4, 3)
+            thursdayTile.secondIngr = Data.getDish(4, 4)
+
+            fridayTile.secondDish = Data.getDish(5, 1)
+            fridayTile.mainDish = Data.getDish(5, 2)
+            fridayTile.firstIngr = Data.getDish(5, 3)
+            fridayTile.secondIngr = Data.getDish(5, 4)
+        }
+    }
+
     DayTile
     {
         id: mondayTile
         innerText: "Poniedziałek"
-
-        secondDish: Data.getDish(1, 1)
-        mainDish: Data.getDish(1, 2)
-        firstIngr: Data.getDish(1, 3)
-        secondIngr: Data.getDish(1, 4)
 
         Component.onCompleted:
         {
@@ -44,11 +71,6 @@ Item
         id: wednesdayTile
         innerText: "Środa"
 
-        secondDish: Data.getDish(3, 1)
-        mainDish: Data.getDish(3, 2)
-        firstIngr: Data.getDish(3, 3)
-        secondIngr: Data.getDish(3, 4)
-
         anchors
         {
             top: mondayTile.bottom
@@ -69,11 +91,6 @@ Item
     {
         id: fridayTile
         innerText: "Piątek"
-
-        secondDish: Data.getDish(5, 1)
-        mainDish: Data.getDish(5, 2)
-        firstIngr: Data.getDish(5, 3)
-        secondIngr: Data.getDish(5, 4)
 
         anchors
         {
@@ -96,11 +113,6 @@ Item
         id: tuesdayTile
         innerText: "Wtorek"
 
-        secondDish: Data.getDish(2, 1)
-        mainDish: Data.getDish(2, 2)
-        firstIngr: Data.getDish(2, 3)
-        secondIngr: Data.getDish(2, 4)
-
         anchors
         {
             bottom: thursdayTile.top
@@ -122,11 +134,6 @@ Item
     {
         id: thursdayTile
         innerText: "Czwartek"
-
-        secondDish: Data.getDish(4, 1)
-        mainDish: Data.getDish(4, 2)
-        firstIngr: Data.getDish(4, 3)
-        secondIngr: Data.getDish(4, 4)
 
         anchors
         {

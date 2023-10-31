@@ -90,7 +90,7 @@ Window
     Loader
     {
         source: "Source/Qml/Screens/LoginScreen/LoginScreen.qml"
-        active: true
+        active: Data.login
         anchors.fill: parent
     }
 }

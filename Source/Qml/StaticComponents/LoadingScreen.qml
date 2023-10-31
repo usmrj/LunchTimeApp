@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Controls
 
 import HackHeroesProject
 
@@ -19,12 +20,12 @@ Item
             width: parent.width / 1.75
             height: parent.width / 1.75
             color: Style.mainColor
-            radius: 30
+            radius: 20
             anchors
             {
                 horizontalCenter: parent.horizontalCenter
                 top: parent.top
-                topMargin: parent.height / 6
+                topMargin: parent.height / 5
             }
         }
 
@@ -33,7 +34,7 @@ Item
             id:loadingText
             font.pixelSize: 28
             color: Style.mainColor
-            text: qsTr("Loading")
+            text: Data.error ? qsTr("Błąd ładowania") : qsTr("Ładowanie")
             anchors
             {
                 top: logo.bottom
@@ -41,48 +42,78 @@ Item
                 horizontalCenter: parent.horizontalCenter
             }
         }
-        SequentialAnimation {
-            running: true
+
+        SequentialAnimation
+        {
+            running: !Data.error
             loops: Animation.Infinite
             PropertyAnimation
             {
                 target: loadingText
                 property: "text"
-                to: "Loading."
+                to: "Ładowanie."
                 duration: 400
             }
             PropertyAnimation
             {
                 target: loadingText
                 property: "text"
-                to: "Loading.."
+                to: "Ładowanie.."
                 duration: 400
             }
             PropertyAnimation
             {
                 target: loadingText
                 property: "text"
-                to: "Loading..."
+                to: "Ładowanie..."
                 duration: 400
             }
             PropertyAnimation
             {
                 target: loadingText
                 property: "text"
-                to: "Loading"
+                to: "Ładowanie"
                 duration: 400
+            }
+        }
+
+        RoundButton
+        {
+            visible: Data.error
+            radius: 78
+            width: 510 / 4
+            height: 150 / 4
+            palette.button: Style.barColor
+
+            contentItem: Text
+            {
+                text: qsTr("Spróbuj ponownie")
+                color: Style.mainColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 13
             }
 
+            anchors.centerIn: loadingBar
+
+            onClicked:
+            {
+                Data.checkConnection()
+            }
         }
 
         Rectangle
         {
+            id: loadingBar
+            visible: !Data.error
+
             anchors
             {
                 top: loadingText.bottom
                 horizontalCenter: parent.horizontalCenter
                 topMargin: loadingText.height * 0.8
             }
+
             width: parent.width / 1.75
             height: loadingText.height * 0.7
             color: Style.secondaryColor

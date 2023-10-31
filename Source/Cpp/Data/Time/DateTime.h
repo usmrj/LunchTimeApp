@@ -49,7 +49,7 @@ private:
 
 public:
 
-    Q_INVOKABLE int getCurrentDay() const;
+    static Q_INVOKABLE int getCurrentDay();
 };
 
 #endif // DATETIME_H
